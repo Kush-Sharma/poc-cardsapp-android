@@ -23,15 +23,19 @@ class CardListViewModel @Inject constructor(
         state.value = state.value.copy(loading = true)
         viewModelScope.launch {
             getCardsUseCase().onSuccess {
-                state.value = state.value.copy(
-                    loading = false,
-                    error = false,
-                    cards = it
+                state.emit(
+                    CardScreenState(
+                        loading = false,
+                        error = false,
+                        cards = it
+                    )
                 )
             }.onFailure {
-                state.value = state.value.copy(
-                    loading = false,
-                    error = true
+                state.emit(
+                    CardScreenState(
+                        loading = false,
+                        error = true
+                    )
                 )
             }
         }

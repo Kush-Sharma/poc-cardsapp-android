@@ -16,7 +16,6 @@ fun CardListScreen(
     viewModel: CardListViewModel = hiltViewModel(),
 ) {
     val state by viewModel.state.collectAsState()
-
     when {
         state.loading -> {
             LoadingSpinner()
@@ -32,7 +31,7 @@ fun CardListScreen(
             LazyColumn {
                 items(state.cards, key = { it.id }) {
                     CardRow(card = it.toCardEntity(), onClick = {
-
+                        //Do Something
                     })
                 }
             }
